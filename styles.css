@@ -1225,3 +1225,118 @@ dd {
     transform: none;
   }
 }
+
+/* 사진 슬라이더 영역 */
+.gallery-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* 슬라이더 내부 사진 */
+.gallery-slider .gallery-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* HTML의 hidden 속성이 있어도 JS가 제어 */
+.gallery-slider .gallery-photo[hidden] {
+  display: block;
+}
+
+/* 갤러리 사진 영역 */
+.gallery-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* 사진 배치 */
+.gallery-slider .gallery-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.gallery-slider .gallery-photo[hidden] {
+  display: block;
+}
+
+/* 하단 원형 표시 영역 */
+.gallery-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* 원형 버튼 기본 상태 */
+.gallery-dot {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+  opacity: 0.35;
+
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* 현재 사진에 해당하는 원 */
+.gallery-dot.active {
+  opacity: 1;
+}
+
+/* 마우스 호버 */
+.gallery-dot:hover {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+/* 키보드 접근성 */
+.gallery-dot:focus-visible {
+  opacity: 1;
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .gallery-dots {
+    bottom: 10px;
+    gap: 10px;
+  }
+
+  .gallery-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
