@@ -39,13 +39,13 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
     <!-- header는 페이지 상단입니다. a의 href="#home"은 id="home"인 구역으로 이동합니다. -->
     <header class="header">
       <!-- 로고 이미지: 파일을 교체할 경우 경로와 대체 설명(alt)을 함께 수정 -->
-      <a class="brand" href="#home" aria-label="뉴월드윈드오케스트라 처음으로"
-        ><img src="images/뉴월드_로고.webp" alt="뉴월드_단체로고" /><span
-          >뉴월드윈드오케스트라<small>NEW WORLD WIND ORCHESTRA</small></span
-        ></a
-      >
+      <a class="brand" href="#home" aria-label="뉴월드윈드오케스트라 처음으로">
+        <img src="images/뉴월드_로고.webp" alt="뉴월드_단체로고" />
+        <span>뉴월드윈드오케스트라<small>NEW WORLD WIND ORCHESTRA</small></span>
+      </a>
       <!-- 메뉴 버튼: aria-expanded는 펼침 여부, aria-controls는 제어할 요소의 id입니다. JS가 상태를 바꿉니다. -->
       <button
+        type="button"
         class="menu-toggle"
         aria-expanded="false"
         aria-controls="navigation"
@@ -54,9 +54,11 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
       </button>
       <!-- 주요 구역으로 이동하는 한 페이지 내부 링크 -->
       <nav id="navigation" aria-label="주요 메뉴">
-        <a href="#about">단체소개</a><a href="#greeting">인사말</a
-        ><a href="#concerts">공연안내</a><a href="#gallery">갤러리</a
-        ><a href="#contact">문의 <span aria-hidden="true">↗</span></a>
+        <a href="#about">단체소개</a>
+        <a href="#greeting">인사말</a>
+        <a href="#concerts">공연안내</a>
+        <a href="#gallery">갤러리</a>
+        <a href="#contact">문의 <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
     <!-- main은 핵심 본문입니다. section으로 주제별 구역을 나누고 h1 → h2 → h3 순서로 제목을 구성합니다. -->
@@ -101,7 +103,7 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
             하나의 숨결이 모여, 마음을 잇는 음악으로.<br />뉴월드윈드오케스트라의
             이야기가 시작됩니다.
           </p>
-          <a class="button light" href="#concerts"
+          <a class="button" href="#concerts"
             >공연 소식 만나보기 <span aria-hidden="true">↗</span></a
           >
           <!-- span은 글의 일부를 묶습니다. aria-hidden="true"인 장식 화살표는 화면 읽기 프로그램에서 제외합니다. -->
@@ -131,7 +133,7 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
       </section>
       <!-- 02. 단체소개: h2는 구역 제목, 하위 내용의 제목은 h3 사용 -->
       <section id="about" class="section container">
-        <div class="section-heading reveal">
+        <div class="reveal">
           <p class="eyebrow">01 / ABOUT US</p>
           <h2>
             서로 다른 소리,<br />하나의 <span class="serif">하모니.</span>
@@ -153,7 +155,6 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
               2025.12.20. 제3회 뉴월드윈드오케스트라 정기연주회<br />
               2026.10.10. 제4회 뉴월드윈드오케스트라 정기연주회<br />
             </p>
-            <p class="draft-note"></p>
           </div>
         </div>
         <!-- article은 독립적으로 이해할 수 있는 내용 묶음입니다. 여기서는 단체의 가치 한 가지를 카드 하나로 표현합니다. -->
@@ -318,7 +319,7 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
             </div>
             <p>무대 위의 열정, 함께한 시간의 기록.</p>
           </div>
-          <!-- 갤러리는 사진 묶음과 수상 설명으로 구성됩니다. 아래 tabindex="0"은 Tab 키로 사진 영역에 초점을 줄 수 있게 합니다. 현재 갤러리 JS에는 초점/마우스에 따른 자동 재생 정지 처리가 없습니다. -->
+          <!-- tabindex="0"은 Tab 키로 사진 영역에 초점을 줄 수 있게 합니다. 세 슬라이더 모두 공통 JS 함수로 재생과 정지를 관리합니다. -->
           <article class="award-gallery reveal">
             <div
               class="gallery-slider"
@@ -364,12 +365,12 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
                 hidden
               />
 
-              <!-- 사진 하단 원형 인디케이터 -->
-              <!-- 각 버튼 순서는 사진 순서와 같습니다. JS가 active 클래스로 현재 사진을 표시합니다. 사진을 추가하면 버튼도 함께 추가하세요. -->
-              <div class="gallery-dots" aria-label="갤러리 사진 선택">
+              <!-- 각 버튼 순서는 사진 순서와 같습니다. JS가 aria-current로 현재 사진을 표시합니다. 사진을 추가하면 버튼도 함께 추가하세요. -->
+              <div class="gallery-dots" role="group" aria-label="갤러리 사진 선택" hidden>
                 <button
                   type="button"
-                  class="gallery-dot active"
+                  class="gallery-dot"
+                  aria-current="true"
                   aria-label="첫 번째 사진"
                 ></button>
 
@@ -417,12 +418,10 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
             <p>공연 및 협업에 관한 이야기를 들려주세요.</p>
             <!-- mailto: 주소는 방문자의 메일 앱을 엽니다. 사이트 자체에서 메일을 보내는 기능은 아닙니다. -->
             <div class="contact-details">
-              <span>공연 · 협업 문의</span
-              ><strong
-                ><a class="email-link" href="mailto:appealing2017@gmail.com"
-                  >appealing2017@gmail.com</a
-                ></strong
-              >
+              <span>공연 · 협업 문의</span>
+              <strong>
+                <a class="email-link" href="mailto:appealing2017@gmail.com">appealing2017@gmail.com</a>
+              </strong>
               <p>공연 및 협업 문의는 공식 이메일로 보내주세요.</p>
             </div>
           </div>
@@ -442,7 +441,7 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
                     alt=""
                     width="28"
                     height="28"
-                  /><span class="social-label">YouTube ↗</span
+                  /><span>YouTube ↗</span
                   ><small>공식 채널 · 새 탭</small></a
                 ><a
                   class="qr-link"
@@ -472,7 +471,7 @@ class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서
                     alt=""
                     width="28"
                     height="28"
-                  /><span class="social-label">Instagram ↗</span
+                  /><span>Instagram ↗</span
                   ><small>공식 계정 · 새 탭</small></a
                 ><a
                   class="qr-link"
