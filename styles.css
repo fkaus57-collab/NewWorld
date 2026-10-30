@@ -82,13 +82,7 @@ button:focus-visible {
   padding-block: 40px;
 }
 /* 큰 제목 위의 작은 영문 안내 글입니다. letter-spacing은 글자 간격, font-weight는 글자 굵기입니다. */
-.eyebrow {
-  font-size: 11px;
-  letter-spacing: 2.6px;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 24px;
-}
+
 h1,
 h2,
 h3 {
@@ -937,7 +931,13 @@ dd {
 }
 .hero .eyebrow {
   color: #dec896;
+  font-size: 11px;
+  letter-spacing: 2.6px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 24px;
 }
+
 .hero .button {
   background: #101f3070;
 }
