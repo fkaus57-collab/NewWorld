@@ -1,8 +1,21 @@
 <!doctype html>
+<!--
+처음 읽는 분을 위한 HTML 안내
+HTML은 페이지의 내용과 구조를 만듭니다. styles.css는 꾸미기, script.js는 동작을 담당합니다.
+태그는 <p>내용</p>처럼 시작과 끝으로 내용을 감쌉니다. img, br, meta 등은 닫는 태그가 없습니다.
+class는 여러 요소에 붙일 수 있는 이름표, id는 이 페이지에서 한 요소를 구별하는 고유 이름입니다.
+예: class="hero" → CSS의 .hero와 JS의 querySelector(".hero")에서 같은 요소를 찾습니다.
+이런 주석은 화면에 표시되지 않습니다. 먼저 각 section을 읽고 CSS와 JS를 연결해 보세요.
+-->
+<!-- lang="ko"는 문서가 한국어임을 브라우저와 화면 읽기 프로그램에 알려줍니다. -->
 <html lang="ko">
+  <!-- head에는 화면 본문이 아닌 문서 설정, 제목, 연결할 파일을 적습니다. -->
   <head>
+    <!-- UTF-8은 한글을 포함한 여러 언어의 글자를 표현하는 문자 인코딩입니다. -->
     <meta charset="UTF-8" />
+    <!-- 휴대폰 화면 너비에 맞춰 페이지를 표시하는 설정입니다. CSS의 반응형 디자인과 함께 사용합니다. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 파비콘: 브라우저 탭에 나타나는 작은 아이콘입니다. href는 파일 위치를 뜻합니다. -->
     <link
       rel="shortcut icon"
       href="images/뉴월드_페비콘_new.png"
@@ -12,13 +25,18 @@
       name="description"
       content="뉴월드윈드오케스트라의 소개, 인사말, 공연 소식을 만나는 공간입니다."
     />
+    <!-- title의 글자는 브라우저 탭 제목으로 표시됩니다. 본문의 큰 제목 h1과는 다릅니다. -->
     <title>뉴월드윈드오케스트라 | 새로운 울림, 함께하는 세상</title>
+    <!-- 같은 폴더의 CSS 파일을 연결합니다. 색상과 여백을 바꾸려면 styles.css를 찾아보세요. -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- defer는 HTML 해석을 마친 뒤 JS를 실행하게 합니다. JS가 아래의 버튼과 사진을 찾을 수 있게 됩니다. -->
     <script src="script.js" defer></script>
   </head>
+  <!-- body 안에는 사용자가 보거나 조작할 실제 페이지 내용이 들어갑니다. -->
   <body>
     <!-- 접근성: 키보드 사용자가 메뉴를 건너뛰고 본문으로 이동하는 링크 -->
     <a class="skip-link" href="#main">본문 바로가기</a>
+    <!-- header는 페이지 상단입니다. a의 href="#home"은 id="home"인 구역으로 이동합니다. -->
     <header class="header">
       <!-- 로고 이미지: 파일을 교체할 경우 경로와 대체 설명(alt)을 함께 수정 -->
       <a class="brand" href="#home" aria-label="뉴월드윈드오케스트라 처음으로"
@@ -26,6 +44,7 @@
           >뉴월드윈드오케스트라<small>NEW WORLD WIND ORCHESTRA</small></span
         ></a
       >
+      <!-- 메뉴 버튼: aria-expanded는 펼침 여부, aria-controls는 제어할 요소의 id입니다. JS가 상태를 바꿉니다. -->
       <button
         class="menu-toggle"
         aria-expanded="false"
@@ -40,11 +59,13 @@
         ><a href="#contact">문의 <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
+    <!-- main은 핵심 본문입니다. section으로 주제별 구역을 나누고 h1 → h2 → h3 순서로 제목을 구성합니다. -->
     <main id="main">
       <!-- 01. 메인: 페이지를 대표하는 유일한 h1 제목과 핵심 소개 -->
       <section id="home" class="hero">
         <!-- 첫 화면 공연 사진: 단원과 지휘자가 보이도록 하단을 기준으로 배치하며 첫 로딩을 우선합니다. -->
         <!-- 단체사진 1 → 2 → 3을 5초마다 순환합니다. 제목과 링크는 고정됩니다. -->
+        <!-- div는 묶음 상자입니다. img의 src는 사진 경로, alt는 사진을 못 보거나 화면 읽기 프로그램을 쓸 때의 설명입니다. width와 height는 크기 정보를 줍니다. -->
         <div class="hero-photos">
           <img
             class="hero-photo"
@@ -71,8 +92,10 @@
             hidden
           />
         </div>
+        <!-- 공백으로 나눈 class 두 개를 동시에 적용합니다. container는 공통 너비, hero-inner는 첫 화면의 내부 배치를 담당합니다. -->
         <div class="container hero-inner">
           <p class="eyebrow">NEW WORLD WIND ORCHESTRA</p>
+          <!-- br은 줄바꿈, em은 강조입니다. 실제 글자 크기와 강조 색상은 CSS에서 지정합니다. -->
           <h1>새로운 울림,<br />함께하는 <em>세상.</em></h1>
           <p class="hero-copy">
             하나의 숨결이 모여, 마음을 잇는 음악으로.<br />뉴월드윈드오케스트라의
@@ -81,6 +104,7 @@
           <a class="button light" href="#concerts"
             >공연 소식 만나보기 <span aria-hidden="true">↗</span></a
           >
+          <!-- span은 글의 일부를 묶습니다. aria-hidden="true"인 장식 화살표는 화면 읽기 프로그램에서 제외합니다. -->
           <div class="hero-bottom">
             <span>WIND · HARMONY · CONNECTION</span
             ><a href="#about"
@@ -113,6 +137,7 @@
             서로 다른 소리,<br />하나의 <span class="serif">하모니.</span>
           </h2>
         </div>
+        <!-- about-grid는 열 배치, reveal은 화면에 들어올 때 등장 효과를 붙이기 위한 이름입니다. JS가 is-pending 클래스를 제어합니다. -->
         <div class="about-grid reveal">
           <p class="large-copy">
             음악이 있는 곳에<br />우리의 이야기가 있습니다.
@@ -131,6 +156,7 @@
             <p class="draft-note"></p>
           </div>
         </div>
+        <!-- article은 독립적으로 이해할 수 있는 내용 묶음입니다. 여기서는 단체의 가치 한 가지를 카드 하나로 표현합니다. -->
         <div class="values reveal">
           <article>
             <span>01</span>
@@ -152,6 +178,7 @@
       <!-- 03. 인사말: 대표자의 사진과 공식 인사말을 배치하는 구역 -->
       <section id="greeting" class="greeting section">
         <div class="container greeting-grid">
+          <!-- figure는 사진과 설명의 묶음, figcaption은 그 설명입니다. loading="lazy"는 사진이 화면 가까이 올 때 로딩하도록 합니다. -->
           <figure class="portrait reveal">
             <img
               src="images/여현석_프로필.jpg"
@@ -211,6 +238,7 @@
             aria-label="제4회 정기연주회 포스터와 리플릿"
           >
             <!-- 이미지는 자르지 않고 전체를 표시합니다. 클릭하면 원본을 새 탭에서 확인할 수 있습니다. -->
+            <!-- 첫 이미지 외에는 hidden으로 숨깁니다. JS가 hidden을 바꾸며 전환합니다. target="_blank"는 새 탭, rel="noopener"는 새 탭의 원래 창 접근을 막습니다. -->
             <div class="concert-slides">
               <a
                 class="concert-slide"
@@ -245,6 +273,7 @@
                   alt="제4회 정기연주회 리플릿 두 번째 면"
               /></a>
             </div>
+            <!-- data-slide는 개발자가 붙인 사용자 정의 속성입니다. JS가 prev(이전), next(다음) 버튼을 구분하는 데 씁니다. -->
             <div class="slider-controls" hidden>
               <button type="button" data-slide="prev" aria-label="이전 이미지">
                 ←</button
@@ -261,6 +290,7 @@
               연주자 80명의 대규모 윈드오케스트라의 울림.<br />공연 포스터와
               리플릿을 만나보세요.
             </p>
+            <!-- dl은 항목과 설명의 목록입니다. dt는 항목 이름(일시/장소), dd는 해당 값입니다. time의 datetime은 기계가 읽기 쉬운 날짜입니다. -->
             <dl>
               <div>
                 <dt>일시</dt>
@@ -288,6 +318,7 @@
             </div>
             <p>무대 위의 열정, 함께한 시간의 기록.</p>
           </div>
+          <!-- 갤러리는 사진 묶음과 수상 설명으로 구성됩니다. 아래 tabindex="0"은 Tab 키로 사진 영역에 초점을 줄 수 있게 합니다. 현재 갤러리 JS에는 초점/마우스에 따른 자동 재생 정지 처리가 없습니다. -->
           <article class="award-gallery reveal">
             <div
               class="gallery-slider"
@@ -334,6 +365,7 @@
               />
 
               <!-- 사진 하단 원형 인디케이터 -->
+              <!-- 각 버튼 순서는 사진 순서와 같습니다. JS가 active 클래스로 현재 사진을 표시합니다. 사진을 추가하면 버튼도 함께 추가하세요. -->
               <div class="gallery-dots" aria-label="갤러리 사진 선택">
                 <button
                   type="button"
@@ -383,6 +415,7 @@
             <p class="eyebrow">05 / GET IN TOUCH</p>
             <h2>새로운 만남을<br />기다립니다.</h2>
             <p>공연 및 협업에 관한 이야기를 들려주세요.</p>
+            <!-- mailto: 주소는 방문자의 메일 앱을 엽니다. 사이트 자체에서 메일을 보내는 기능은 아닙니다. -->
             <div class="contact-details">
               <span>공연 · 협업 문의</span
               ><strong
@@ -396,6 +429,7 @@
           <div class="contact-details">
             <div class="socials">
               <!-- QR 이미지는 원본 비율을 유지하며 클릭하면 원본 크기로 볼 수 있습니다. --><!-- 외부 링크: 새 탭 열림을 안내하고 noopener noreferrer로 연결합니다. -->
+              <!-- SNS 카드: 채널 링크와 QR 원본 링크가 따로 있습니다. alt=""인 로고는 주변 링크 설명과 중복해서 읽지 않도록 합니다. -->
               <div class="social-card">
                 <a
                   href="https://www.youtube.com/@NewWorldWindOrchestra"
@@ -460,6 +494,7 @@
       </section>
     </main>
     <!-- footer: 단체의 공식 사업자 정보 및 소재지 -->
+    <!-- footer는 페이지 끝의 정보입니다. 아래 id="year"의 연도는 JS가 방문자 기기의 현재 연도로 갱신합니다. -->
     <footer class="footer container">
       <div>
         <strong>뉴월드윈드오케스트라</strong>
